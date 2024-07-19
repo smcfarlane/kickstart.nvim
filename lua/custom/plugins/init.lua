@@ -6,9 +6,21 @@ return {
   { 'ekalinin/Dockerfile.vim' },
   { 'stevearc/dressing.nvim' },
   { 'rafamadriz/friendly-snippets' },
-  { 'sainnhe/everforest' },
-  { 'rebelot/kanagawa.nvim' },
-  { 'EdenEast/nightfox.nvim' },
+  {
+    'sainnhe/everforest',
+    priority = 1000, -- Make sure to load this before all the other start plugins.
+  },
+  {
+    'rebelot/kanagawa.nvim',
+    priority = 1000, -- Make sure to load this before all the other start plugins.
+  },
+  {
+    'EdenEast/nightfox.nvim',
+    priority = 1000, -- Make sure to load this before all the other start plugins.
+    init = function()
+      vim.cmd.colorscheme 'nightfox'
+    end,
+  },
   { 'tpope/vim-fugitive' },
   { 'tpope/vim-haml' },
   { 'towolf/vim-helm' },
