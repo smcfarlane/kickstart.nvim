@@ -9,17 +9,27 @@ return {
   {
     'sainnhe/everforest',
     priority = 1000, -- Make sure to load this before all the other start plugins.
+    init = function()
+      -- vim.g.everforest_background = 'soft'
+      vim.cmd.colorscheme 'everforest'
+    end,
   },
   {
     'rebelot/kanagawa.nvim',
     priority = 1000, -- Make sure to load this before all the other start plugins.
+    opts = {
+      theme = 'wave',
+    },
+    -- init = function()
+    --   vim.cmd 'colorscheme kanagawa'
+    -- end,
   },
   {
     'EdenEast/nightfox.nvim',
     priority = 1000, -- Make sure to load this before all the other start plugins.
-    init = function()
-      vim.cmd.colorscheme 'nightfox'
-    end,
+    -- init = function()
+    --   vim.cmd.colorscheme 'dayfox'
+    -- end,
   },
   { 'tpope/vim-fugitive' },
   { 'tpope/vim-haml' },
