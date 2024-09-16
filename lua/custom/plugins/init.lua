@@ -7,12 +7,20 @@ return {
   { 'stevearc/dressing.nvim' },
   { 'rafamadriz/friendly-snippets' },
   {
+    'RRethy/base16-nvim',
+    priority = 1000,
+    init = function()
+      vim.cmd 'colorscheme base16-tomorrow-night'
+    end,
+  },
+  {
     'sainnhe/everforest',
     priority = 1000, -- Make sure to load this before all the other start plugins.
-    init = function()
-      -- vim.g.everforest_background = 'soft'
-      vim.cmd.colorscheme 'everforest'
-    end,
+    -- init = function()
+    --   vim.opt.background = 'dark'
+    --   vim.g.everforest_background = 'hard'
+    --   vim.cmd.colorscheme 'everforest'
+    -- end,
   },
   {
     'rebelot/kanagawa.nvim',
