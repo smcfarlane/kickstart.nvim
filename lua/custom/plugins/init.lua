@@ -5,14 +5,13 @@
 return {
   { 'ekalinin/Dockerfile.vim' },
   { 'stevearc/dressing.nvim' },
-  { 'rafamadriz/friendly-snippets' },
-  {
-    'RRethy/base16-nvim',
-    priority = 1000,
-    init = function()
-      vim.cmd 'colorscheme base16-tomorrow-night'
-    end,
-  },
+  -- {
+  --   'RRethy/base16-nvim',
+  --   priority = 1000,
+  --   -- init = function()
+  --   --   vim.cmd 'colorscheme base16-tomorrow-night'
+  --   -- end,
+  -- },
   {
     'sainnhe/everforest',
     priority = 1000, -- Make sure to load this before all the other start plugins.
@@ -40,9 +39,18 @@ return {
     -- end,
   },
   { 'tpope/vim-fugitive' },
+  { 'tpope/vim-surround' },
+  { 'tpope/vim-rails' },
+  { 'tpope/vim-rake' },
   { 'tpope/vim-haml' },
   { 'towolf/vim-helm' },
   { 'folke/zen-mode.nvim' },
+  {
+    'MagicDuck/grug-far.nvim',
+    config = function()
+      require('grug-far').setup {}
+    end,
+  },
   {
     'folke/trouble.nvim',
     opts = {}, -- for default options, refer to the configuration section for custom setup.

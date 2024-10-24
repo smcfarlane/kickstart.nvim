@@ -600,14 +600,24 @@ require('lazy').setup({
         --    https://github.com/pmizio/typescript-tools.nvim
         --
         -- But for many setups, the LSP (`tsserver`) will work just fine
-        tsserver = {},
+        ts_ls = {},
         templ = {},
         html = { filetypes = { 'html', 'templ' } },
-        htmx = { filetypes = { 'html', 'templ' } },
+        htmx = { filetypes = { 'html', 'templ', 'eruby' } },
         tailwindcss = {
-          filetypes = { 'templ', 'astro', 'javascript', 'typescript', 'react' },
+          filetypes = { 'templ', 'astro', 'javascript', 'typescript', 'react', 'eruby', 'ruby' },
           settings = {
-            tailwindCSS = { includeLanguages = { templ = 'html' } },
+            tailwindCSS = {
+              includeLanguages = { templ = 'html' },
+              experimental = {
+                classRegex = {
+                  -- '%\\w+([^\\s]*)',
+                  -- '\\.([^\\.]*)',
+                  ':class\\s*=>\\s*"([^"]*)',
+                  'class:\\s+"([^"]*)',
+                },
+              },
+            },
           },
         },
         --
@@ -656,7 +666,7 @@ require('lazy').setup({
           end,
         },
       }
-      require('lspconfig').ruby_lsp.setup {}
+      require('lspconfig').ruby_lsp.setup { formatter = 'rubocop', linters = { 'rubocop' } }
     end,
   },
 
@@ -719,12 +729,12 @@ require('lazy').setup({
           -- `friendly-snippets` contains a variety of premade snippets.
           --    See the README about individual language/framework/plugin snippets:
           --    https://github.com/rafamadriz/friendly-snippets
-          -- {
-          --   'rafamadriz/friendly-snippets',
-          --   config = function()
-          --     require('luasnip.loaders.from_vscode').lazy_load()
-          --   end,
-          -- },
+          {
+            'rafamadriz/friendly-snippets',
+            config = function()
+              require('luasnip.loaders.from_vscode').lazy_load()
+            end,
+          },
         },
       },
       'saadparwaiz1/cmp_luasnip',
@@ -857,7 +867,7 @@ require('lazy').setup({
       -- - saiw) - [S]urround [A]dd [I]nner [W]ord [)]Paren
       -- - sd'   - [S]urround [D]elete [']quotes
       -- - sr)'  - [S]urround [R]eplace [)] [']
-      require('mini.surround').setup()
+      -- require('mini.surround').setup()
 
       -- Simple and easy statusline.
       --  You could remove this setup call if you don't like it,
@@ -873,6 +883,8 @@ require('lazy').setup({
       statusline.section_location = function()
         return '%2l:%-2v'
       end
+
+      require 'custom.mini_conf'
 
       -- ... and there is more!
       --  Check out: https://github.com/echasnovski/mini.nvim
